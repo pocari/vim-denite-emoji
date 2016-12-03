@@ -5,7 +5,7 @@
 
 from .base import Base
 
-class Base(object):
+class Base(base):
     def __init__(self, vim):
         self.vim = vim
 

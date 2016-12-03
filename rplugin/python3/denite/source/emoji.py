@@ -5,15 +5,7 @@
 
 from .base import Base
 
-class Base(base):
-    def __init__(self, vim):
-        self.vim = vim
-
 class Source(Base):
-    EMOJI_LIST = {
-        0x1f44b: "WAVING HAND SIGN",
-        0x1f44c: "OK HAND SIGN"
-    }
 
     def __init__(self, vim):
         super().__init__(vim)
@@ -22,10 +14,13 @@ class Source(Base):
 
     def gather_candidates(self, context):
         candidates = []
-        for code, emoji_name in Source.EMOJI_LIST.items():
-            emoji = chr(code)
+        for emoji_name, code in self.vim.eval('emoji#data#dict()').items():
+            if isinstance(code, list):
+                emoji = "".join(map(chr, code))
+            else:
+                emoji = chr(code)
             candidates += [{
-                'word': emoji,
-                'action__text': "{0} ({1})".format(emoji, emoji_name)
+                'word': "{0} {1}".format(emoji, emoji_name),
+                'action__text': emoji
             }]
         return candidates

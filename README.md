@@ -15,8 +15,8 @@ This plugin depends on:
 
 For [dein.vim](https://github.com/Shougo/dein.vim)
 
-   ```
-   call dein#add('Shougo/denite-nvim')
+   ```vim
+   call dein#add('Shougo/denite.nvim')
    call dein#add('junegunn/vim-emoji')
    call dein#add('pocari/vim-denite-emoji')
    ```
